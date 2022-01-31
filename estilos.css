@@ -1,0 +1,61 @@
+ #divJugador
+    {
+        width:100%;
+    }
+    #divJugador>div
+    {
+        width:200px;
+        height:100px;
+        margin: 100px auto;
+        display:flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+    }
+    #titulo
+    {
+        display:flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+    }
+    #titulo span, #crono span
+    {
+        text-align: center;
+        font-size:14px;
+    }
+    #btnJugar
+    {
+        width:80px;
+        font-weight: 400;
+        font-size: 16px;
+    }
+    #jugador
+    {
+        width:150px;
+    }
+    #btnJugador
+    {
+        width:80px;
+    }
+    #contenedor
+    {
+        width:170px;
+        margin:100px auto;
+        /* display:none; */
+    }
+    #contenedor #palabras input
+    {
+        width:30px;
+        height:30px;
+        margin:0;
+        padding:0;
+        text-align: center;
+        font-weight: bold;
+        font-size: 24px;
+    }
+    #crono
+    {
+        text-align: center;
+        margin-top:10px;
+    }
