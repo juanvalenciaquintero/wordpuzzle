@@ -10,10 +10,10 @@
 <body>
 <?php
  //Conexion valquinter.com
-// $conexion = mysqli_connect('localhost','valquint_juan','42180200Az','valquint_juegos');
+$conexion = mysqli_connect('localhost','valquint_juan','42180200Az','valquint_juegos');
 
 //Conexión local
-$conexion = mysqli_connect('localhost','root','','diccionario');
+// $conexion = mysqli_connect('localhost','root','','diccionario');
 
 $loginVisible = 'style="display:none"';
 if (!isset($_POST['nombre']))
@@ -155,7 +155,8 @@ if (!isset($_POST['nombre']))
 
     function jugar()
     {
-
+        document.getElementById('palabras').style.display='block';
+        document.getElementById('btnJugar').style.display='none';
         timer();
     }
 
@@ -200,6 +201,7 @@ if (!isset($_POST['nombre']))
         var objPalabra = "";
         var tiempo     = 0;
         var longitud   = 5;
+        var encontradas = new Array();
         for (i=0;i<5;i++)
         {
           objetivo[i]=document.getElementById('objetivo_'+i).value;
@@ -214,12 +216,21 @@ if (!isset($_POST['nombre']))
           console.log('Selector: ' + 'palabra_'+fila+'_'+i);
           if (objetivo[i] == palabra[i])
           {
-             console.log('Entrado en if: ');
              document.getElementById('palabra_'+fila+'_'+i).style.backgroundColor='#ACFF33';
+             encontradas.push(i);
              aciertos++;
           } else if (inArray(palabra[i],objetivo))
           {
-            document.getElementById('palabra_'+fila+'_'+i).style.backgroundColor='#FFFC33';
+              console.log('i: ' + i + ' - ' + palabra[i]);
+              console.log('Encontradas: ' + encontradas);
+              for (j=0;j<objetivo.length;j++)
+              {
+                  console.log('j: ' + j + ' - ' + palabra[i] + ' - ' + objetivo[j]);
+                  if ((palabra[i] == objetivo[j]) && !inArray(j,encontradas))
+                  {
+                    document.getElementById('palabra_'+fila+'_'+i).style.backgroundColor='#FFFC33';
+                  }
+              }
           }
         }
         tiempoHtml = document.getElementById('tiempo').innerHTML;
@@ -239,7 +250,7 @@ if (!isset($_POST['nombre']))
             document.getElementById('mensajes').innerHTML = '¡Enhorabuena! Lo has conseguido<br><input type="button" value="Volver a jugar" onclick="jugarOtra();">';
             console.log('Tiempo: ' + tiempo);
             clearTimeout(t);
-            var jugador = document.getElementById('nombre').innerHTML;
+            // var jugador = document.getElementById('nombre').innerHTML;
             var xHttp = new XMLHttpRequest();
             console.log(jugador + ' - ' + longitud + ' - ' + tiempo);
             xHttp.onreadystatechange = function() {

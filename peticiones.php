@@ -1,8 +1,8 @@
 <?php
 //Conexion valquinter.com
-// $conexion = mysqli_connect('localhost','valquint_juan','42180200Az','valquint_juegos');
+$conexion = mysqli_connect('localhost','valquint_juan','42180200Az','valquint_juegos');
 //Conexión local
-$conexion = mysqli_connect('localhost','root','','diccionario');
+// $conexion = mysqli_connect('localhost','root','','diccionario');
 
 $request  = json_decode(file_get_contents('php://input'));
 
